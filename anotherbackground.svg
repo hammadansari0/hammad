@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" preserveAspectRatio="none" viewBox="0 0 1920 1080">
+  <defs>
+    <mask id="SvgjsMask1126">
+      <rect width="1920" height="1080" fill="#ffffff"></rect>
+    </mask>
+  </defs>
+
+  <g mask="url(#SvgjsMask1126)" fill="none" stroke="rgba(51, 121, 194, 0.58)" stroke-width="3">
+    <path class="wave wave1" d="M0,540 C480,240 1440,840 1920,540" />
+    <path class="wave wave2" d="M0,600 C480,300 1440,900 1920,600" />
+    <path class="wave wave3" d="M0,660 C480,360 1440,960 1920,660" />
+  </g>
+
+  <style>
+    .wave {
+      transform-origin: center;
+      animation: waveAnim 10s ease-in-out infinite alternate;
+    }
+
+    .wave2 {
+      animation-delay: 1.5s;
+    }
+
+    .wave3 {
+      animation-delay: 3s;
+    }
+
+    @keyframes waveAnim {
+      0% {
+        d: path("M0,540 C480,240 1440,840 1920,540");
+      }
+      50% {
+        d: path("M0,540 C480,840 1440,240 1920,540");
+      }
+      100% {
+        d: path("M0,540 C480,240 1440,840 1920,540");
+      }
+    }
+  </style>
+</svg>
