@@ -26,7 +26,7 @@ export default function Education() {
   const gpaText = isDarkMode ? 'text-gray-300' : 'text-gray-700';
 
   return (
-    <section className={`w-full min-h-screen px-4 sm:px-8 md:px-16 py-16 ${sectionBg}`} id="education">
+    <section className={`relative bg-[url('/educationexperience.svg')] bg-no-repeat bg-cover bg-center w-full min-h-screen px-4 sm:px-8 md:px-16 py-16 ${sectionBg}`} id="education">
       <motion.h2
         className="text-3xl md:text-4xl font-bold text-center mb-16 relative"
         initial={{ opacity: 0, y: -30 }}

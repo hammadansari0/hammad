@@ -32,13 +32,13 @@ export default function Projects() {
   const linkColor = isDarkMode ? 'text-indigo-400 hover:text-indigo-300' : 'text-indigo-600 hover:text-indigo-500';
 
   return (
-    <section className={`w-full min-h-screen px-4 sm:px-8 md:px-16 py-16 ${sectionBg}`} id="projects">
+    <section className={`relative bg-[url('/background1.svg')] bg-no-repeat bg-cover bg-center w-full min-h-screen px-4 sm:px-8 md:px-16 py-16 ${sectionBg}`} id="projects">
       <motion.h2
         className="text-3xl md:text-4xl font-bold text-center mb-16 relative"
         initial={{ opacity: 0, y: -30 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
-        viewport={{ once: true }}
+        viewport={{ once: false }}
       >
         Projects
         <span className="block w-20 h-1 bg-indigo-500 mx-auto mt-2 rounded" />
@@ -52,7 +52,7 @@ export default function Projects() {
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: idx * 0.2 }}
-            viewport={{ once: true }}
+            viewport={{ once: false }}
           >
             <img src={project.image} alt={project.name} className="w-full h-1/2 object-cover" />
             <div className="p-4 flex-1 flex flex-col justify-between">

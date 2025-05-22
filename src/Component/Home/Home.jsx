@@ -22,7 +22,7 @@ export default function Home() {
   return (
     <section
       id="home"
-      className={`min-h-screen flex items-center font-poppins justify-center px-6 py-12 transition-colors ${bgColor}`}
+      className={`relative bg-[url('/background.svg')] bg-no-repeat bg-cover bg-center min-h-screen flex items-center justify-center px-6 py-12 ${bgColor}`}
     >
       <div className="max-w-6xl w-full flex flex-col-reverse md:flex-row items-center justify-between gap-12">
         {/* Text Content */}
