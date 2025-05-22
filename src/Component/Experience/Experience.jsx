@@ -36,7 +36,7 @@ export default function Experience() {
   const lineColor = isDarkMode ? "bg-indigo-400" : "bg-indigo-500";
 
   return (
-    <section id="experience" className={`relative bg-[url('/educationexperience.svg')] bg-no-repeat bg-contain bg-center w-full min-h-screen px-4 sm:px-8 md:px-16 py-16 ${sectionBg}`}>
+    <section id="experience" className={`relative bg-[url('/src/assets/educationexperience.svg')] bg-no-repeat bg-contain bg-center w-full min-h-screen px-4 sm:px-8 md:px-16 py-16 ${sectionBg}`}>
       <motion.h2
         className="text-3xl md:text-4xl font-bold text-center mb-16 relative"
         initial={{ opacity: 0, y: -30 }}

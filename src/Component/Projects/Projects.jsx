@@ -1,25 +1,26 @@
 import { motion } from 'framer-motion';
 import { FolderGit2, ExternalLink } from 'lucide-react';
 import { useDarkMode } from '../../context/DarkModeContext';
+import sampleImg from '../../assets/sample.jpg'
 
 const projects = [
   {
     name: 'Portfolio Website',
     description: 'A personal portfolio site to showcase my projects, experience, and skills.',
     link: 'https://your-portfolio-link.com',
-    image: './public/images/sample.jpg',
+    image: sampleImg,
   },
   {
     name: 'E-commerce App',
     description: 'A full-stack e-commerce app with cart, payment, and admin dashboard.',
     link: 'https://your-ecommerce-app.com',
-    image: './public/images/sample.jpg',
+    image: sampleImg,
   },
   {
     name: 'Blog Platform',
     description: 'A Markdown-based blog platform with authentication and CMS.',
     link: 'https://your-blog-platform.com',
-    image: './public/images/sample.jpg',
+    image: sampleImg,
   },
 ];
 
@@ -32,7 +33,7 @@ export default function Projects() {
   const linkColor = isDarkMode ? 'text-indigo-400 hover:text-indigo-300' : 'text-indigo-600 hover:text-indigo-500';
 
   return (
-    <section className={`relative bg-[url('/background1.svg')] bg-no-repeat bg-cover bg-center w-full min-h-screen px-4 sm:px-8 md:px-16 py-16 ${sectionBg}`} id="projects">
+    <section className={`relative bg-[url('/src/assets/background1.svg')] bg-no-repeat bg-cover bg-center w-full min-h-screen px-4 sm:px-8 md:px-16 py-16 ${sectionBg}`} id="projects">
       <motion.h2
         className="text-3xl md:text-4xl font-bold text-center mb-16 relative"
         initial={{ opacity: 0, y: -30 }}

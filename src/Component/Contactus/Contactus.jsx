@@ -19,7 +19,7 @@ export default function ContactUs() {
   const lineColor = isDarkMode ? "bg-indigo-400" : "bg-indigo-500";
 
   return (
-    <section id="contact" className={`min-h-screen px-4 sm:px-8 md:px-16 py-20 ${sectionBg}`}>
+    <section id="contact" className={`relative bg-[url('/src/assets/contactus.svg')] bg-no-repeat bg-cover bg-center min-h-screen px-4 sm:px-8 md:px-16 py-20 ${sectionBg}`}>
       <motion.h2
         className="text-3xl md:text-4xl font-bold text-center mb-16 relative"
         initial={{ opacity: 0, y: -30 }}
