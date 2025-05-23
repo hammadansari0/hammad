@@ -1,23 +1,47 @@
 import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
 import { Github, Linkedin, Mail, Phone } from "lucide-react";
 import { useDarkMode } from "../../context/DarkModeContext";
-// import Image from "next/image";
-import profilePic from "../../assets/hammad.png"; // replace with your image path
+import profilePic from "../../assets/hammad.png";
 
 const socialIcons = [
-  { icon: Github, href: "https://github.com", color: "text-gray-500" },
-  { icon: Linkedin, href: "https://linkedin.com", color: "text-indigo-500" },
-  { icon: Mail, href: "mailto:email@example.com", color: "text-red-500" },
-  { icon: Phone, href: "tel:+1234567890", color: "text-green-500" },
+  { icon: Github, href: "https://github.com/hammadansari0/", color: "text-gray-500" },
+  { icon: Linkedin, href: "https://www.linkedin.com/in/hammad-ansari001/", color: "text-indigo-500" },
+  { icon: Mail, href: "mailto:official.hammadansari@gmail.com", color: "text-red-500" },
+  { icon: Phone, href: "tel:+919122721472", color: "text-green-500" },
 ];
 
 export default function Home() {
   const { isDarkMode } = useDarkMode();
-
   const bgColor = isDarkMode ? "bg-gray-900 text-white" : "bg-gray-100 text-gray-800";
   const textMuted = isDarkMode ? "text-gray-300" : "text-gray-600";
   const iconbg = isDarkMode ? "bg-gray-800" : "bg-white";
   const buttonBg = isDarkMode ? "bg-purple-700 hover:bg-purple-800" : "bg-purple-600 hover:bg-purple-700";
+
+  // ✨ Typewriter effect state
+  const [typedText, setTypedText] = useState("");
+  const fullText = "Hello, I'm ";
+
+  useEffect(() => {
+    let i = 0;
+    let direction = 1;
+
+    const interval = setInterval(() => {
+      setTypedText(fullText.slice(0, i));
+
+      i += direction;
+
+      if (i > fullText.length) {
+        direction = -1;
+        i = fullText.length;
+      } else if (i < 0) {
+        direction = 1;
+        i = 0;
+      }
+    }, 150);
+
+    return () => clearInterval(interval);
+  }, []);
 
   return (
     <section
@@ -32,15 +56,28 @@ export default function Home() {
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.6 }}
         >
-          <h2 className="text-2xl font-semibold mb-2">Hello, I'm</h2>
+          {/* ✨ Animated typewriter heading */}
+          <motion.h2
+            className="text-2xl font-semibold mb-2 text-center md:text-left"
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+          >
+            {typedText}
+            <span className="border-r-2 border-white ml-1 animate-pulse"></span>
+          </motion.h2>
+
           <h1 className="text-4xl sm:text-5xl font-poppins font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-pink-500 mb-4">
             Hammad Ansari
           </h1>
           <p className={`font-poppins mb-6 ${textMuted}`}>
-            A passionate Web Developer specializing in creating beautiful and functional websites.
+            A passionate Web Developer specializing in creating beautiful and functional websites in MERN Stack.
           </p>
 
-          <button className={`px-6 py-2 rounded-full text-white shadow-lg font-medium mb-6 transition ${buttonBg}`}>
+          <button
+            onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
+            className={`px-6 py-2 rounded-full text-white shadow-lg font-medium mb-6 transition ${buttonBg}`}
+          >
             Get In Touch
           </button>
 
@@ -58,7 +95,6 @@ export default function Home() {
               </motion.a>
             ))}
           </div>
-
         </motion.div>
 
         {/* Profile Image */}

@@ -5,11 +5,15 @@ import {
   Instagram,
   Send,
   Phone,
+  Loader2,
 } from "lucide-react";
 import { useDarkMode } from "../../context/DarkModeContext";
+import { useState } from "react";
 
 export default function ContactUs() {
   const { isDarkMode } = useDarkMode();
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
   const sectionBg = isDarkMode ? "bg-gray-900 text-white" : "bg-white text-black";
   const formBg = isDarkMode ? "bg-gray-800" : "bg-gray-100";
@@ -18,8 +22,50 @@ export default function ContactUs() {
   const socialText = isDarkMode ? "text-gray-300" : "text-gray-700";
   const lineColor = isDarkMode ? "bg-indigo-400" : "bg-indigo-500";
 
+  const validateEmail = (email) =>
+    /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const name = e.target.name.value.trim();
+    const email = e.target.email.value.trim();
+    const message = e.target.message.value.trim();
+
+    if (!name || !email || !message) {
+      setError("Please fill in all fields.");
+      return;
+    }
+    if (!validateEmail(email)) {
+      setError("Please enter a valid email address.");
+      return;
+    }
+
+    setError("");
+    setLoading(true);
+
+    const formattedMsg = `Name: ${name}%0AEmail: ${email}%0AMessage: ${message}`;
+    const whatsappURL = `https://wa.me/919122721472?text=${formattedMsg}`;
+
+    if (/Android|iPhone/i.test(navigator.userAgent)) {
+      window.open(whatsappURL, "_blank");
+      setLoading(false);
+    } else {
+      const newTab = window.open(whatsappURL, "_blank");
+      setTimeout(() => {
+        if (!newTab || newTab.closed || typeof newTab.closed === "undefined") {
+          const mailtoURL = `mailto:official.hammadansari@gmail.com?subject=Contact%20Form&body=${formattedMsg}`;
+          window.location.href = mailtoURL;
+        }
+        setLoading(false);
+      }, 1500);
+    }
+  };
+
   return (
-    <section id="contact" className={`relative bg-[url('/src/assets/contactus.svg')] bg-no-repeat bg-cover bg-center min-h-screen px-4 sm:px-8 md:px-16 py-20 ${sectionBg}`}>
+    <section
+      id="contact"
+      className={`relative bg-[url('/src/assets/contactus.svg')] bg-no-repeat bg-cover bg-center min-h-screen px-4 sm:px-8 md:px-16 py-20 ${sectionBg}`}
+    >
       <motion.h2
         className="text-3xl md:text-4xl font-bold text-center mb-16 relative"
         initial={{ opacity: 0, y: -30 }}
@@ -34,6 +80,7 @@ export default function ContactUs() {
       <div className="flex flex-col lg:flex-row items-center justify-between gap-16">
         {/* Form */}
         <motion.form
+          onSubmit={handleSubmit}
           className={`w-full lg:w-1/2 ${formBg} p-8 rounded-2xl shadow-md space-y-6`}
           initial={{ opacity: 0, x: -50 }}
           whileInView={{ opacity: 1, x: 0 }}
@@ -43,33 +90,58 @@ export default function ContactUs() {
           <div>
             <label className="block font-medium mb-1">Name</label>
             <input
+              name="name"
               type="text"
               className={`w-full p-3 rounded-md border ${inputBg} focus:outline-none focus:ring-2 ${focusRing}`}
               placeholder="Your Name"
+              required
             />
           </div>
           <div>
             <label className="block font-medium mb-1">Email</label>
             <input
+              name="email"
               type="email"
               className={`w-full p-3 rounded-md border ${inputBg} focus:outline-none focus:ring-2 ${focusRing}`}
               placeholder="you@example.com"
+              required
             />
           </div>
           <div>
             <label className="block font-medium mb-1">Message</label>
             <textarea
+              name="message"
               rows="5"
               className={`w-full p-3 rounded-md border ${inputBg} focus:outline-none focus:ring-2 ${focusRing}`}
               placeholder="Type your message..."
+              required
             />
           </div>
+
+          {error && (
+            <p className="text-red-500 text-sm -mt-3">{error}</p>
+          )}
+
           <button
             type="submit"
-            className="flex items-center justify-center gap-2 bg-indigo-600 text-white px-6 py-3 rounded-lg hover:bg-indigo-700 transition duration-300 shadow-sm"
+            disabled={loading}
+            className={`flex items-center justify-center gap-2 px-6 py-3 rounded-lg transition duration-300 shadow-sm font-medium ${
+              loading
+                ? "bg-gray-500 cursor-not-allowed"
+                : "bg-indigo-600 hover:bg-indigo-700 text-white"
+            }`}
           >
-            <Send size={18} />
-            Send Message
+            {loading ? (
+              <>
+                <Loader2 className="animate-spin" size={18} />
+                Sending...
+              </>
+            ) : (
+              <>
+                <Send size={18} />
+                Send Message
+              </>
+            )}
           </button>
         </motion.form>
 

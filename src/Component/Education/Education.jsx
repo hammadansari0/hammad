@@ -8,12 +8,14 @@ const educationData = [
     degree: 'B.Tech CSE',
     duration: '2021 – 2025',
     gpa: 'GPA: 7.82/10.0',
+    details:'Major with Web Development'
   },
   {
     institution: 'Trinity International College',
     degree: 'High School',
     duration: '2018 – 2020',
     gpa: 'GPA: 2.77/4.0',
+    details:'Major with PCM'
   },
 ];
 
@@ -65,6 +67,9 @@ export default function Education() {
                       {edu.duration}
                     </div>
                     <p className={`text-sm ${gpaText}`}>{edu.gpa}</p>
+                    <ul className={`text-sm ${gpaText} `}>
+                      <li>{edu.details}</li>
+                    </ul>
                   </div>
                 </div>
               </motion.div>

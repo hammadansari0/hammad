@@ -31,7 +31,7 @@ export default function Footer() {
               isDarkMode ? "text-gray-400" : "text-gray-600"
             }`}
           >
-            Passionate developer crafting sleek and elegant web experiences with modern tech.
+            Passionate developer crafting sleek and elegant web experiences with MERN stack.
           </p>
         </div>
 

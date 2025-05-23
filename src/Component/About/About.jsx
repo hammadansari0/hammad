@@ -3,11 +3,12 @@ import { useDarkMode } from "../../context/DarkModeContext";
 
 const technicalSkills = [
   "React JS", "Node JS", "JavaScript", "Data Structures",
-  "API Integration", "SQL", "MySQL", "GitHub", "MongoDB", "Web Development",
+  "API Integration", "SQL", "MySQL", "GitHub", "MongoDB", "Web Development", "Google Sheets", "Vercel", "CI/CD", "Js Frameworks",
+  "Testing", "Debugging",
 ];
 
 const softSkills = [
-  "Teamwork", "Time Management", "Leadership", "Effective Communication", "Critical Thinking"
+  "Teamwork", "Time Management", "Leadership", "Effective Communication", "Critical Thinking", "Team player", "Collaboration"
 ];
 
 export default function About() {
@@ -37,7 +38,7 @@ export default function About() {
           whileInView={{ opacity: 1 }}
           transition={{ delay: 0.3 }}
         >
-          Web Developer & Quality Assurance Specialist
+         MERN Stack Web Developer
         </motion.h3>
 
         <motion.p
@@ -46,8 +47,8 @@ export default function About() {
           whileInView={{ opacity: 1 }}
           transition={{ delay: 0.4 }}
         >
-          I am a passionate web developer with expertise in creating responsive and interactive web applications.
-          Currently pursuing B.Tech in Computer Science Engineering, I combine my academic knowledge with practical
+          I am a passionate web developer with expertise in creating responsive and interactive web applications in MERN stack.
+          Completed B.Tech in Computer Science Engineering, I combine my academic knowledge with practical
           experience to deliver high-quality solutions.
         </motion.p>
 
@@ -58,7 +59,7 @@ export default function About() {
           transition={{ delay: 0.5 }}
         >
           With experience in both development and quality assurance, I have a comprehensive understanding of the software
-          development lifecycle and a keen eye for detail.
+          development lifecycle and a keen eye for detail ensuring a Quality product and service is delivered to client.
         </motion.p>
 
         <motion.div
