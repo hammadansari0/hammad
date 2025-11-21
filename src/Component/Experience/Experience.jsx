@@ -8,9 +8,10 @@ const experiences = [
     role: 'Junior Web Developer',
     duration: 'Apr 2025 – May 2025',
     details: [
-      'Collaborated effectively with team to develop and optimize software solutions.',
+      'Collaborated with team effectively to design and Develop Applications UI.',
       'Integrated RESTful API in frontend of the projects as per requirements.',
       'Validated Transactions of Frontend using Bearer Tokens.',
+      ' Delivered the final product ahead of schedule, exceeding client expectations.',
     ],
   },
   {
@@ -18,9 +19,9 @@ const experiences = [
     role: 'Quality Assurance',
     duration: 'Oct 2023 – Aug 2024',
     details: [
-      'Validated Content For Brainly platform.',
-      'Maintained Sheets for invalid response on the platform.',
-      'Generated and Tested content from Brainly tool for errors.',
+      'Validated contents on platform',
+      'Maintained Sheets for the Inconsistency of content generating team.',
+      'Implemented Ai based solution for automating the process.',
     ],
   },
 ];

@@ -3,12 +3,12 @@ import { useDarkMode } from "../../context/DarkModeContext";
 
 const technicalSkills = [
   "React JS", "Node JS", "JavaScript", "Data Structures",
-  "API Integration", "SQL", "MySQL", "GitHub", "MongoDB", "Web Development", "Google Sheets", "Vercel", "CI/CD", "Js Frameworks",
-  "Testing", "Debugging",
+  "API Integration", "Sqlite", "MySQL", "GitHub", "MongoDB", "Web Development", "Google Sheets", "Vercel", "CI/CD", "Js Frameworks",
+  "Testing", "Debugging","Ubuntu linux"
 ];
 
 const softSkills = [
-  "Teamwork", "Time Management", "Leadership", "Effective Communication", "Critical Thinking", "Team player", "Collaboration"
+  "Team player", "Time Management", "Effective Communication", "Critical Thinking", "Team player", "Collaboration"
 ];
 
 export default function About() {
@@ -38,7 +38,7 @@ export default function About() {
           whileInView={{ opacity: 1 }}
           transition={{ delay: 0.3 }}
         >
-         MERN Stack Web Developer
+         Full-Stack Web Developer (MERN) | DevOps Enthusiast
         </motion.h3>
 
         <motion.p
@@ -47,9 +47,7 @@ export default function About() {
           whileInView={{ opacity: 1 }}
           transition={{ delay: 0.4 }}
         >
-          I am a passionate web developer with expertise in creating responsive and interactive web applications in MERN stack.
-          Completed B.Tech in Computer Science Engineering, I combine my academic knowledge with practical
-          experience to deliver high-quality solutions.
+          I am a Computer Science graduate specializing in the MERN stack with a strong grasp of full-stack development. I’m currently enhancing my skill set by learning DevOps tools and practices to build scalable and efficient deployment workflows.
         </motion.p>
 
         <motion.p
@@ -58,8 +56,7 @@ export default function About() {
           whileInView={{ opacity: 1 }}
           transition={{ delay: 0.5 }}
         >
-          With experience in both development and quality assurance, I have a comprehensive understanding of the software
-          development lifecycle and a keen eye for detail ensuring a Quality product and service is delivered to client.
+          Backed by practical experience in both development and quality assurance, I bring a well-rounded understanding of the software development lifecycle. During my internship, I consistently delivered optimal solutions, met deadlines ahead of time, and contributed effectively to team objectives—all while maintaining a strong focus on delivering reliable, high-quality products to clients.
         </motion.p>
 
         <motion.div

@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import axios from "axios";
 import {
   Linkedin,
   Github,
@@ -25,41 +26,77 @@ export default function ContactUs() {
   const validateEmail = (email) =>
     /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 
-  const handleSubmit = (e) => {
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   const name = e.target.name.value.trim();
+  //   const email = e.target.email.value.trim();
+  //   const message = e.target.message.value.trim();
+
+  //   if (!name || !email || !message) {
+  //     setError("Please fill in all fields.");
+  //     return;
+  //   }
+  //   if (!validateEmail(email)) {
+  //     setError("Please enter a valid email address.");
+  //     return;
+  //   }
+
+  //   setError("");
+  //   setLoading(true);
+
+  //   const formattedMsg = `Name: ${name}%0AEmail: ${email}%0AMessage: ${message}`;
+  //   const whatsappURL = `https://wa.me/919122721472?text=${formattedMsg}`;
+
+  //   if (/Android|iPhone/i.test(navigator.userAgent)) {
+  //     window.open(whatsappURL, "_blank");
+  //     setLoading(false);
+  //   } else {
+  //     const newTab = window.open(whatsappURL, "_blank");
+  //     setTimeout(() => {
+  //       if (!newTab || newTab.closed || typeof newTab.closed === "undefined") {
+  //         const mailtoURL = `mailto:official.hammadansari@gmail.com?subject=Contact%20Form&body=${formattedMsg}`;
+  //         window.location.href = mailtoURL;
+  //       }
+  //       setLoading(false);
+  //     }, 1500);
+  //   }
+  // };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const name = e.target.name.value.trim();
     const email = e.target.email.value.trim();
     const message = e.target.message.value.trim();
 
-    if (!name || !email || !message) {
-      setError("Please fill in all fields.");
-      return;
-    }
-    if (!validateEmail(email)) {
-      setError("Please enter a valid email address.");
-      return;
-    }
+    if (!name || !email || !message) return alert("All fields are required");
 
-    setError("");
-    setLoading(true);
-
-    const formattedMsg = `Name: ${name}%0AEmail: ${email}%0AMessage: ${message}`;
-    const whatsappURL = `https://wa.me/919122721472?text=${formattedMsg}`;
-
-    if (/Android|iPhone/i.test(navigator.userAgent)) {
-      window.open(whatsappURL, "_blank");
-      setLoading(false);
-    } else {
-      const newTab = window.open(whatsappURL, "_blank");
-      setTimeout(() => {
-        if (!newTab || newTab.closed || typeof newTab.closed === "undefined") {
-          const mailtoURL = `mailto:official.hammadansari@gmail.com?subject=Contact%20Form&body=${formattedMsg}`;
-          window.location.href = mailtoURL;
+    const payload = {
+      name,
+      email,
+      message,
+      date: new Date().toISOString()
+    };
+    console.log("this is payload",payload);
+    try {
+      const response = await axios.post("https://script.google.com/macros/s/AKfycbxX_G56ewwUYPf4ruFc7R2bV6LBQgHVEorkDXH2cy7SQI3Y6MO48-G_hjg38-a_nFZLMg/exec", payload, {
+        headers: {
+          "Content-Type": "application/json"
         }
-        setLoading(false);
-      }, 1500);
+      });
+
+      if (response.data.result === "success") {
+        alert("Message sent successfully!");
+        e.target.reset();
+      } else {
+        alert("Failed to send message.");
+      }
+    } catch (err) {
+      console.error(err);
+      alert("Error sending message.");
     }
   };
+
+
 
   return (
     <section
@@ -125,11 +162,10 @@ export default function ContactUs() {
           <button
             type="submit"
             disabled={loading}
-            className={`flex items-center justify-center gap-2 px-6 py-3 rounded-lg transition duration-300 shadow-sm font-medium ${
-              loading
-                ? "bg-gray-500 cursor-not-allowed"
-                : "bg-indigo-600 hover:bg-indigo-700 text-white"
-            }`}
+            className={`flex items-center justify-center gap-2 px-6 py-3 rounded-lg transition duration-300 shadow-sm font-medium ${loading
+              ? "bg-gray-500 cursor-not-allowed"
+              : "bg-indigo-600 hover:bg-indigo-700 text-white"
+              }`}
           >
             {loading ? (
               <>

@@ -21,8 +21,19 @@ const projects = [
   {
     name: 'UI for Hospital Management',
     description: 'A responsive and intuitive hospital management UI built in React with effective state management, ensuring a seamless and user-friendly experience for managing healthcare operations.',
-    link: 'https://your-blog-platform.com',
+    link: 'https://hms-sandy.vercel.app/',
     github: 'https://github.com/hammadansari0/hms',
+    image: sampleImg,
+  },{
+    name: 'Website for Brother Textile Industry',
+    description: 'A modern website built for Brother Textile Industry to showcase their products and strengthen their digital presence.',
+    link: 'https://btextile.vercel.app/',
+    github: 'https://github.com/hammadansari0/btextile',
+    image: sampleImg,
+  },
+  {
+    name: 'Survey Tool For ARB(Arabian Research Bureau)',
+    description: 'A responsive and intuitive User Interface for Creating a Survey with various types of questions and answer types.',
     image: sampleImg,
   },
 ];
@@ -72,29 +83,33 @@ export default function Projects() {
               </div>
 
               <div className="flex justify-between items-center mt-2">
-                <a
-                  href={project.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={`inline-flex items-center font-medium text-sm hover:underline ${linkColor}`}
-                >
-                  Visit Project <ExternalLink size={16} className="ml-1" />
-                </a>
+                {project.link && (
+                  <a
+                    href={project.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`inline-flex items-center font-medium text-sm hover:underline ${linkColor}`}
+                  >
+                    Visit Project <ExternalLink size={16} className="ml-1" />
+                  </a>
+                )}
 
-                <motion.a
-                  href={project.github}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  whileTap={{ scale: 0.95 }}
-                  whileHover={{ scale: 1.05 }}
-                  className={`inline-flex items-center px-3 py-1 rounded-md text-sm font-medium shadow-md transition-colors ${
-                    isDarkMode
-                      ? 'bg-indigo-600 text-white hover:bg-indigo-500'
-                      : 'bg-indigo-100 text-indigo-700 hover:bg-indigo-200'
-                  }`}
-                >
-                  <FolderGit2 size={16} className="mr-1" /> GitHub
-                </motion.a>
+                {project.github && (
+                  <motion.a
+                    href={project.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    whileTap={{ scale: 0.95 }}
+                    whileHover={{ scale: 1.05 }}
+                    className={`inline-flex items-center px-3 py-1 rounded-md text-sm font-medium shadow-md transition-colors ${isDarkMode
+                        ? 'bg-indigo-600 text-white hover:bg-indigo-500'
+                        : 'bg-indigo-100 text-indigo-700 hover:bg-indigo-200'
+                      }`}
+                  >
+                    <FolderGit2 size={16} className="mr-1" /> GitHub
+                  </motion.a>
+                )}
+
               </div>
             </div>
           </motion.div>

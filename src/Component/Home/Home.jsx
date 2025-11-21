@@ -71,7 +71,7 @@ export default function Home() {
             Hammad Ansari
           </h1>
           <p className={`font-poppins mb-6 ${textMuted}`}>
-            A passionate Web Developer specializing in creating beautiful and functional websites in MERN Stack.
+            A dedicated full-stack developer skilled in the MERN stack, with a growing enthusiasm for DevOps and scalable deployment practices.
           </p>
 
           <button

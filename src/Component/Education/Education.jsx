@@ -15,7 +15,7 @@ const educationData = [
     degree: 'High School',
     duration: '2018 – 2020',
     gpa: 'GPA: 2.77/4.0',
-    details:'Major with PCM'
+    details:''
   },
 ];
 
