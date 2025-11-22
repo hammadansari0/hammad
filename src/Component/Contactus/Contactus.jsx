@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import axios from "axios";
+// import axios from "axios";
 import {
   Linkedin,
   Github,
@@ -69,31 +69,36 @@ export default function ContactUs() {
     const message = e.target.message.value.trim();
 
     if (!name || !email || !message) return alert("All fields are required");
+    console.log(`Name=${name}&Email=${email}&message=${message}`);
+    
+    const URL = "https://script.google.com/macros/s/AKfycbxX_G56ewwUYPf4ruFc7R2bV6LBQgHVEorkDXH2cy7SQI3Y6MO48-G_hjg38-a_nFZLMg/exec"
+    fetch(URL,{
+      method:"POST",
+      headers: { "Content-Type" : "application/x-www-form-urlencoded"},
+      body:(`Name=${name}&Email=${email}&Message=${message}`)
+    }).then(res=>res.text()).then(data=>{
+      // alert(data)
+      e.target.name.value = ''
+      e.target.email.value = ''
+      e.target.message.value = ''
+    }).catch(error=>console.log(error))
+    // try {
+    //   const response = await axios.post("https://script.google.com/macros/s/AKfycbxX_G56ewwUYPf4ruFc7R2bV6LBQgHVEorkDXH2cy7SQI3Y6MO48-G_hjg38-a_nFZLMg/exec", payload, {
+    //     headers: {
+    //       "Content-Type": "application/json"
+    //     }
+    //   });
 
-    const payload = {
-      name,
-      email,
-      message,
-      date: new Date().toISOString()
-    };
-    console.log("this is payload",payload);
-    try {
-      const response = await axios.post("https://script.google.com/macros/s/AKfycbxX_G56ewwUYPf4ruFc7R2bV6LBQgHVEorkDXH2cy7SQI3Y6MO48-G_hjg38-a_nFZLMg/exec", payload, {
-        headers: {
-          "Content-Type": "application/json"
-        }
-      });
-
-      if (response.data.result === "success") {
-        alert("Message sent successfully!");
-        e.target.reset();
-      } else {
-        alert("Failed to send message.");
-      }
-    } catch (err) {
-      console.error(err);
-      alert("Error sending message.");
-    }
+    //   if (response.data.result === "success") {
+    //     alert("Message sent successfully!");
+    //     e.target.reset();
+    //   } else {
+    //     alert("Failed to send message.");
+    //   }
+    // } catch (err) {
+    //   console.error(err);
+    //   alert("Error sending message.");
+    // }
   };
 
 
