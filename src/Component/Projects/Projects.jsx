@@ -32,7 +32,7 @@ const projects = [
     image: sampleImg,
   },
   {
-    name: 'Survey Tool For ARB(Arabian Research Bureau)',
+    name: 'Survey Tool UI',
     description: 'A responsive and intuitive User Interface for Creating a Survey with various types of questions and answer types.',
     image: sampleImg,
   },
