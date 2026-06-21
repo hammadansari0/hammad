@@ -1,17 +1,12 @@
-name: Build, Test & Deploy Vite App to GitHub Pages
+name: Build, Test & Deploy Vite App to cPanel
 
 on:
   push:
     branches:
       - main
 
-permissions:
-  contents: read
-  pages: write
-  id-token: write
-
 concurrency:
-  group: "pages"
+  group: deploy-production
   cancel-in-progress: true
 
 jobs:
@@ -20,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
+      - name: Checkout Repository
         uses: actions/checkout@v4
 
       - name: Setup Node.js
@@ -29,20 +24,19 @@ jobs:
           node-version: 20
           cache: npm
 
-      - name: Install dependencies
+      - name: Install Dependencies
         run: npm ci
 
-      - name: Run tests
+      - name: Run Tests
         run: npm run test --if-present
 
-
-  build:
-    name: Build Project
+  build-and-deploy:
+    name: Build & Deploy
     runs-on: ubuntu-latest
     needs: test
 
     steps:
-      - name: Checkout repository
+      - name: Checkout Repository
         uses: actions/checkout@v4
 
       - name: Setup Node.js
@@ -51,34 +45,24 @@ jobs:
           node-version: 20
           cache: npm
 
-      - name: Install dependencies
+      - name: Install Dependencies
         run: npm ci
 
-      - name: Build project
+      - name: Build Vite Application
         run: npm run build
 
-      - name: Upload build artifact
-        uses: actions/upload-pages-artifact@v3
+      - name: Deploy to cPanel via FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
-          path: dist
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          protocol: ftps
+          port: 21
+          local-dir: ./dist/
+          server-dir: ./public_html/
 
-
-  deploy:
-    name: Deploy to GitHub Pages
-    runs-on: ubuntu-latest
-    needs: build
-
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-
-    steps:
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
-
-      # 📧 SUCCESS EMAIL
-      - name: Send success email
+      - name: Send Success Email
         if: success()
         uses: dawidd6/action-send-mail@v3
         with:
@@ -87,25 +71,22 @@ jobs:
           secure: true
           username: ${{ secrets.EMAIL_USERNAME }}
           password: ${{ secrets.EMAIL_PASSWORD }}
-          subject: "✅ Build & Deployment Successful - ${{ github.repository }}"
+          subject: "✅ Deployment Successful - ${{ github.repository }}"
           to: ${{ secrets.EMAIL_TO }}
           from: GitHub Actions
           body: |
-            🎉 Deployment Successful!
+            🎉 Deployment completed successfully.
 
-            📦 Repository: ${{ github.repository }}
-            🌿 Branch: ${{ github.ref_name }}
-            💬 Commit: ${{ github.event.head_commit.message }}
+            Repository: ${{ github.repository }}
+            Branch: ${{ github.ref_name }}
 
-            🌍 Live URL:
-            ${{ steps.deployment.outputs.page_url }}
+            Website:
+            https://hammadansari.com.np
 
-            🔗 Workflow Run:
+            Workflow:
             https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}
 
-
-      # 📧 FAILURE EMAIL
-      - name: Send failure email
+      - name: Send Failure Email
         if: failure()
         uses: dawidd6/action-send-mail@v3
         with:
@@ -114,15 +95,14 @@ jobs:
           secure: true
           username: ${{ secrets.EMAIL_USERNAME }}
           password: ${{ secrets.EMAIL_PASSWORD }}
-          subject: "❌ Build or Deployment Failed - ${{ github.repository }}"
+          subject: "❌ Deployment Failed - ${{ github.repository }}"
           to: ${{ secrets.EMAIL_TO }}
           from: GitHub Actions
           body: |
-            🚨 Deployment Failed!
+            Deployment failed.
 
-            📦 Repository: ${{ github.repository }}
-            🌿 Branch: ${{ github.ref_name }}
-            💬 Commit: ${{ github.event.head_commit.message }}
+            Repository: ${{ github.repository }}
+            Branch: ${{ github.ref_name }}
 
-            🔗 Check logs:
+            Check logs:
             https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}
