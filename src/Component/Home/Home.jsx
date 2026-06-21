@@ -7,8 +7,8 @@ import profilePic from "../../assets/hammad.png";
 const socialIcons = [
   { icon: Github, href: "https://github.com/hammadansari0/", color: "text-gray-500" },
   { icon: Linkedin, href: "https://www.linkedin.com/in/hammad-ansari001/", color: "text-indigo-500" },
-  { icon: Mail, href: "mailto:official.hammadansari@gmail.com", color: "text-red-500" },
-  { icon: Phone, href: "tel:+919122721472", color: "text-green-500" },
+  { icon: Mail, href: "mailto:info@hammadansari.com.np", color: "text-red-500" },
+  { icon: Phone, href: "https://wa.link/xuy47a", color: "text-green-500" },
 ];
 
 export default function Home() {

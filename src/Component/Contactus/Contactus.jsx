@@ -208,7 +208,7 @@ export default function ContactUs() {
             <a href="https://www.instagram.com/hammad__ansari__/" target="_blank" rel="noreferrer">
               <Instagram className="text-pink-500 hover:scale-110 transition-transform duration-300" size={28} />
             </a>
-            <a href="https://wa.me/919122721472" target="_blank" rel="noreferrer">
+            <a href="https://wa.link/xuy47a" target="_blank" rel="noreferrer">
               <Phone className="text-green-500 hover:scale-110 transition-transform duration-300" size={28} />
             </a>
           </div>
