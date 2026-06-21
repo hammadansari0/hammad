@@ -15,7 +15,7 @@ export default defineConfig({
       ]
     }),
   ],
-  base: "/hammad/",
+  base: "/",
 })
 
 // https://vite.dev/config/
