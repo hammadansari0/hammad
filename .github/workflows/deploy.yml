@@ -60,7 +60,7 @@ jobs:
           protocol: ftps
           port: 21
           local-dir: ./dist/
-          server-dir: ./public_html/
+          server-dir: ./
 
       - name: Send Success Email
         if: success()
